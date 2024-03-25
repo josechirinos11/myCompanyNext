@@ -2,6 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
+.titulo {
+  font-family: 'Rubik', sans-serif;
+  
+  padding-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 46px;
+}
+/* Estilo para el color naranja */
+.orange {
+  color: #E67E22; /* Color naranja */
+}
+
+/* Estilo para el color azul */
+.blue {
+  color: #2874A6; /* Color azul */
+}
+
+.input {
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 1em;
+  background-color: #ccc;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  transition: 300ms ease-in-out;
+  color: #666; /* Color de texto gris */
+  
+}
+
+.input:focus {
+  background-color: white;
+  transform: scale(1.05);
+  box-shadow: 13px 13px 100px #969696,
+             -13px -13px 100px #ffffff;
+}
+.input2 {
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 1em;
+  background-color: #ccc;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  transition: 300ms ease-in-out;
+}
+
+.input2:focus {
+  background-color: white;
+  transform: scale(1.05);
+  box-shadow: 13px 13px 100px #969696,
+             -13px -13px 100px #ffffff;
+}
+/* Estilos de Glassmorphism */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+}
+
+/* Estilos de Neumorphism */
+.neumorphism {
+  border-radius: 20px;
+  background: #e0e0e0;
+box-shadow:  20px 20px 60px #5a5a5a,
+             -20px -20px 60px #ffffff;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -30,4 +97,9 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+.background-image {
+  background-image: url('../../public/img/imgFondo.jpg');
+  background-size: cover;
+  background-position: center;
 }
