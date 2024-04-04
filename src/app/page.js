@@ -15,12 +15,12 @@ export default function Home() {
           <div className="neumorphism rounded-full overflow-hidden border border-gray-300 dark:border-gray-700">
             <Link href="/sing-in" legacyBehavior>
               <a className="dark:text-gray-800 dark:hover:text-gray-200 text-center block py-2 px-6 text-sm bg-gray-300 hover:bg-gray-400 text-white font-semibold transition duration-300 ease-in-out">
-                Login.....
+              Iniciar Sesion
               </a>
             </Link>
             <Link href="/sing-up" legacyBehavior>
               <a className="block py-2 px-6 text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-500 dark:hover:text-gray-800 dark:text-gray-200 font-semibold transition duration-300 ease-in-out">
-                Create Account
+              Crear Cuenta
               </a>
             </Link>
           </div>

@@ -10,19 +10,24 @@ const SignIn = () => {
   const [password, setPassword] = useState('123456');
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
   const router = useRouter()
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (event) => {
-
     event.preventDefault();
     try {
       const res = await signInWithEmailAndPassword(email, password);
       console.log({ res });
-      sessionStorage.setItem('user', true)
-      setEmail('');
-      setPassword('');
-      router.push('/')
-    } catch (e) {
-      console.error(e)
+      sessionStorage.setItem('user', true);
+      //setEmail('');
+     // setPassword('');
+      if (res.user) {
+        router.push('/usuario');
+      } else {
+        setError('Usuario no registrado');
+      }
+    } catch (error) {
+      console.error('Usuario no registrado');
+      setError('Usuario no registrado');
     }
   };
 
@@ -33,6 +38,11 @@ const SignIn = () => {
           <span className="orange">Iniciar</span>
           <span className="blue">Sesion</span>
         </h2>
+        {error && (
+          <div className="advertencia">
+            {error}
+          </div>
+        )}
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -75,7 +85,7 @@ const SignIn = () => {
               type="submit"
               className=" flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-gray-900 hover:text-white bg-indigo-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 neumorphism"
             >
-              Sign in
+              Iniciar
             </button>
 
           </div>

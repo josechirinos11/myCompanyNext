@@ -103,3 +103,18 @@ body {
   background-size: cover;
   background-position: center;
 }
+.advertencia {
+  padding: 10px;
+  background-color: red;
+  color: black;
+  font-size: smaller; /* Letras más pequeñas */
+  display: flex;
+ justify-content: center;
+ align-items: center;
+  padding: 1px; /* Espaciado interno */
+  margin-bottom: 20px; /* Espaciado externo inferior */
+  border: none;
+  border-radius: 20px;
+box-shadow:  20px 20px 60px #5a5a5a,
+             -20px -20px 60px #ffffff;
+}

@@ -3,12 +3,16 @@ import { useState } from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import { auth } from '@/app/firebase/config'
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
+
 
 
 
 const SignUp = () => {
   const [email, setEmail] = useState('jose@jose.com');
   const [password, setPassword] = useState('123456');
+  const router = useRouter()
+  const [error, setError] = useState(null);
 
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
 
@@ -19,25 +23,65 @@ const SignUp = () => {
     event.preventDefault();
     console.log(email)
     console.log(password)
+
+
+    try {
+      const res = await signInWithEmailAndPassword(email, password);
+      console.log({ res });
+      sessionStorage.setItem('user', true);
+      //setEmail('');
+      // setPassword('');
+      if (res.user) {
+        setError('Usuario ya esta registrado')
+      } else {
+        const res = await createUserWithEmailAndPassword(email, password)
+        // console.log({ res })
+        sessionStorage.setItem('user', true)
+        // setEmail('');
+        // setPassword('')
+        if (res) {
+          // Usuario creado exitosamente, redirigir a la página de usuario
+          router.push('/usuario');
+        }
+      }
+    } catch (error) {
+      console.error('Usuario no registrado');
+      setError('Usuario YA esta registrado');
+    }
+
+
+
+
     try {
 
       const res = await createUserWithEmailAndPassword(email, password)
-      console.log({ res })
+      // console.log({ res })
       sessionStorage.setItem('user', true)
-      setEmail('');
-      setPassword('')
+      // setEmail('');
+      // setPassword('')
+      if (res) {
+        // Usuario creado exitosamente, redirigir a la página de usuario
+        router.push('/usuario');
+      }
     } catch (e) {
-      console.error(e)
+
+      console.error('Usuario no registrado');
+      setError('Usuario ya esta registrado');
     }
   };
 
   return (
     <main className="background-image flex min-h-screen flex-col items-center justify-center p-12 bg-gray-100 dark:bg-gray-700">
       <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg neumorphism">
-      <h2 className="titulo">
-          <span className="orange">Iniciar</span>
-          <span className="blue">Sesion</span>
+        <h2 className="titulo">
+          <span className="orange">Crear</span>
+          <span className="blue">Cuenta</span>
         </h2>
+        {error && (
+          <div className="advertencia">
+            {error}
+          </div>
+        )}
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -80,7 +124,7 @@ const SignUp = () => {
               type="submit"
               className="flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-gray-900 hover:text-white bg-indigo-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 neumorphism"
             >
-              Sign up
+              Crear
             </button>
 
           </div>
